@@ -1,7 +1,7 @@
 /**
  * Класс App управляет всем приложением
  * */
-class App {
+ class App {
   /**
    * С вызова этого метода начинается работа всего приложения
    * Он производит перваоначальную настройку всех
@@ -9,13 +9,13 @@ class App {
    * боковой колонки
    * */
   static init() {
-    this.element = document.querySelector(".app");
-    this.content = document.querySelector(".content-wrapper");
+    this.element = document.querySelector( '.app' );
+    this.content = document.querySelector( '.content-wrapper' );
 
     this.initPages();
     this.initForms();
-    this.initModals();
     this.initWidgets();
+    this.initModals();
 
     Sidebar.init();
 
@@ -40,8 +40,8 @@ class App {
    * */
   static initPages() {
     this.pages = {
-      transactions: new TransactionsPage(this.content),
-    };
+      transactions: new TransactionsPage(this.content)
+    }
   }
 
   /**
@@ -49,11 +49,11 @@ class App {
    * */
   static initModals() {
     this.modals = {
-      register: new Modal(document.querySelector("#modal-register")),
-      login: new Modal(document.querySelector("#modal-login")),
-      createAccount: new Modal(document.querySelector("#modal-new-account")),
-      newIncome: new Modal(document.querySelector("#modal-new-income")),
-      newExpense: new Modal(document.querySelector("#modal-new-expense")),
+      register: new Modal( document.querySelector( '#modal-register' )),
+      login: new Modal( document.querySelector( '#modal-login' )),
+      createAccount: new Modal( document.querySelector( '#modal-new-account' )),
+      newIncome: new Modal( document.querySelector( '#modal-new-income' )),
+      newExpense: new Modal( document.querySelector( '#modal-new-expense' )),
     };
   }
 
@@ -134,9 +134,9 @@ class App {
    * Вызывает у полученной страницы метод render()
    * и передаёт туда объект options
    * */
-  static showPage(pageName, options) {
-    const page = this.getPage(pageName);
-    page.render(options);
+  static showPage( pageName, options ) {
+    const page = this.getPage( pageName );
+    page.render( options );
   }
 
   /**
@@ -149,17 +149,17 @@ class App {
    * Если состояние state равно 'init', необходимо
    * вызвать метод clear()
    * */
-  static setState(state) {
+  static setState( state ) {
     if (this.state) {
-      this.element.classList.remove(`app_${this.state}`);
+      this.element.classList.remove( `app_${this.state}` );
     }
-    this.element.classList.add(`app_${state}`);
+    this.element.classList.add( `app_${state}` );
     this.state = state;
 
-    if (state === "user-logged") {
+    if ( state === 'user-logged' ) {
       this.update();
     }
-    if (state === "init") {
+    if ( state === 'init' ) {
       this.clear();
     }
   }
@@ -171,7 +171,7 @@ class App {
    * метод clear()
    * */
   static clear() {
-    this.getPage("transactions").clear();
+    this.getPage( 'transactions' ).clear();
   }
 
   /**
@@ -191,7 +191,7 @@ class App {
    * метод update()
    * */
   static updatePages() {
-    this.getPage("transactions").update();
+    this.getPage( 'transactions' ).update();
   }
 
   /**
@@ -199,12 +199,12 @@ class App {
    * accounts и user
    * */
   static updateWidgets() {
-    this.getWidget("accounts").update();
-    this.getWidget("user").update();
+    this.getWidget( 'accounts' ).update();
+    this.getWidget( 'user' ).update();
   }
 
   static updateForms() {
-    this.getForm("createIncome").renderAccountsList();
-    this.getForm("createExpense").renderAccountsList();
+    this.getForm( 'createIncome' ).renderAccountsList();
+    this.getForm( 'createExpense' ).renderAccountsList();
   }
 }
